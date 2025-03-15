@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
   workflow_dispatch:
 
 permissions:
@@ -24,15 +25,19 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci  # Ensures dependencies are correctly installed
+
+      - name: Install Vite globally
+        run: npm install -g vite  # Ensures Vite is available
 
       - name: Build project
-        run: npm run build
+        run: npx vite build  # Ensures the correct binary is executed
 
       - name: Upload build output
-        uses: actions/upload-pages-artifact@v2  # Correct action for Pages
+        uses: actions/upload-artifact@v4
         with:
-          path: dist  # GitHub Pages requires this format
+          name: dist
+          path: dist
 
   deploy:
     needs: build
@@ -43,4 +48,4 @@ jobs:
 
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
