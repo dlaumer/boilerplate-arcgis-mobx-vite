@@ -34,9 +34,9 @@ jobs:
         run: npx vite build  # Ensures the correct binary is executed
 
       - name: Upload build output
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: github-pages
           path: dist
 
   deploy:
