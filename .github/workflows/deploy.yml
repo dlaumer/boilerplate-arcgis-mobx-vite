@@ -34,7 +34,7 @@ jobs:
         run: npx vite build  # Ensures the correct binary is executed
 
       - name: Upload build output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v4
         with:
           name: dist
           path: dist
