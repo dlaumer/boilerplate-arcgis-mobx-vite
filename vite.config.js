@@ -7,6 +7,12 @@ export default defineConfig({
   base: "/boilerplate-arcgis-mobx-vite/", // IMPORTANT: Set this to your repo name
   build: {
     outDir: "dist",
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Avoid excessive chunking
+      },
+    },
   },
   define: {
     "process.env": {},
